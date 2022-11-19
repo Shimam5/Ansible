@@ -1,0 +1,35 @@
+---
+ - name: star stop and terminate ec2 instance
+   hosts: localhost
+   gather_facts: false
+   connection: local
+   tasks:
+    - name: starting or running an instance
+      ec2: 
+        instance_ids: i-0ffdda2d0eada2a1d
+        region: us-east-1
+        state: running
+        wait: yes
+      tags:
+        - start
+        - never
+    - name: stopping or running an instance
+      ec2:
+        instance_ids: i-0ffdda2d0eada2a1d
+        region: us-east-1
+        state: stopped
+        wait: yes
+      tags:
+        - stop
+        - never
+    - name: tereminating or running an instance
+      ec2:
+        instance_ids: i-05f111f93253db9f0,i-0c983b1b4ffc3d2fb,i-0f21c939b981a13f5,i-0f1ba7d13b504aa22,i-0ce34a305404f9c6b,i-0a5bd425cb19067cc
+        region: us-east-1
+        state: absent
+        wait: yes
+      tags:
+        - terminate
+        - never
+
+

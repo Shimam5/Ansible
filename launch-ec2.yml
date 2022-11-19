@@ -1,0 +1,19 @@
+---
+ - name: launching Ec2 instance 
+   hosts: localhost
+   gather_facts: false
+   tasks:
+   - name: launching ec2 instance using ec2
+     ec2:
+      image: ami-0b0dcb5067f052a63
+      instance_type: t2.micro
+      key_name: himam-virginia
+      region: us-east-1
+      group: mynewSG
+      count: 1
+      wait_timeout: 100
+      wait: yes
+      instance_tags:
+       Name: Test
+       Env: Dev
+

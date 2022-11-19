@@ -1,0 +1,17 @@
+---
+ - name: Launching an ec2 instance
+   hosts: localhost
+   gather_facts: false
+   connection: local
+   tasks:
+     - name: Docker Lunching instance
+       ec2:
+         image: ami-0b0dcb5067f052a63
+         instance_type: t2.micro
+         group: mynewSG
+         count: 3
+         wait: yes
+         region: us-east-1
+         instance_tags:
+           Name: Docker
+           Env: worpdress
